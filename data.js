@@ -34,10 +34,10 @@ module.exports = function(app) {
 		, otw = new OAuth(
 		"https://api.twitter.com/oauth/request_token",
 		"https://api.twitter.com/oauth/access_token",
-		"zxaqKEM5tAfnjcnWnLWXfEhdl",
-		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
+		"KEY",
+		"KEY_SECRET",
 		"1.0",
-		"http://huntlytics.servicethis.co/auth/twitter/callback",
+		"http://localhost:3030/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
@@ -92,7 +92,7 @@ module.exports = function(app) {
 		var options = {
 			url: 'https://api.producthunt.com/v1/posts/' + id,
 			headers: {
-				'Authorization': 'Bearer 08907cbf0df590fbacbedb410d8bb918a9906d281d65b2a276e473fd4b947841'
+				'Authorization': 'Bearer PH_DEV_KEY'
 			}
 		};
 
@@ -112,7 +112,7 @@ module.exports = function(app) {
 			var options = {
 				url: 'https://api.producthunt.com/v1/posts/' + id + '/votes?per_page=50' + older,
 				headers: {
-					'Authorization': 'Bearer 08907cbf0df590fbacbedb410d8bb918a9906d281d65b2a276e473fd4b947841'
+					'Authorization': 'Bearer PH_DEV_KEY'
 				}
 			};
 			
@@ -199,8 +199,8 @@ module.exports = function(app) {
 			term = 'producthunt';
 		}
 		var twit = new twitter({
-			consumer_key: 'zxaqKEM5tAfnjcnWnLWXfEhdl',
-			consumer_secret: '3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE',
+			consumer_key: 'KEY',
+			consumer_secret: 'KEY_SECRET',
 			access_token_key: req.session.ottw,
 			access_token_secret: req.session.ottws
 		});
@@ -313,8 +313,8 @@ module.exports = function(app) {
 							if(data.length != 0){
 								
 								var twit = new twitter({
-											consumer_key: 'zxaqKEM5tAfnjcnWnLWXfEhdl',
-											consumer_secret: '3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE',
+											consumer_key: 'KEY',
+											consumer_secret: 'KEY_SECRET',
 											access_token_key: req.session.ottw,
 											access_token_secret: req.session.ottws
 										});
@@ -379,7 +379,7 @@ module.exports = function(app) {
 	var moment 		= require('moment');
 	var ObjectID = require('mongodb').ObjectID
 
-	var connection_string = 'mongodb://heroku_app29990195:6k4c5podhj7g6qnop5rijkucsp@ds039850.mongolab.com:39850/heroku_app29990195';
+	var connection_string = 'connection_string';
 
 	
 
