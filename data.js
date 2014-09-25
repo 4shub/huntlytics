@@ -17,7 +17,7 @@ module.exports = function(app) {
 		"zxaqKEM5tAfnjcnWnLWXfEhdl",
 		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
 		"1.0",
-		"http://huntlytics.herokuapp.com/auth/twitter/callback",
+		"http://localhost:3030/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
@@ -420,8 +420,9 @@ module.exports = function(app) {
 				
 				if (i < data.length) {
 					products.findOne({id:data[i].id}, function(e, o) {
-						
+						console.log('cron');
 						if (o){
+							
 							o.votes[o.votes.length] = data[i].votes_count;
 							var hour = moment().hour();
 							o.time[o.time.length] = ampm(hour);
