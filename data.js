@@ -17,7 +17,7 @@ module.exports = function(app) {
 		"zxaqKEM5tAfnjcnWnLWXfEhdl",
 		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
 		"1.0",
-		"http://localhost:3030/auth/twitter/callback",
+		"http://huntlytics.servicethis.co/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
@@ -320,7 +320,7 @@ module.exports = function(app) {
 										}
 										// interests
 										if(twe[i].description != undefined){
-											interests = interests.concat(stripCommon(twe[i].description.toLowerCase().replace(/[^\w\s]|_'"/g, "")).split(' '));
+											interests = interests.concat((stripCommon(twe[i].description).toLowerCase().replace(/[^\w\s]|_'"/g, "").replace(' a ', "").replace('the', "")).split(' ')); //for some reason the and a didn't get deleted
 											
 										}
 										 followers.push([twe[i].screen_name, twe[i].name, twe[i].followers_count, twe[i].followers_count, twe[i].profile_image_url, data[i].user.votes_count, data[i].user.posts_count, data[i].user.maker_of_count]);
@@ -364,7 +364,7 @@ module.exports = function(app) {
 	
 
 		var mongojs = require('mongojs');
-		var db = mongojs(connection_string, ['accounts', 'emails', 'sched', 'graph']);
+		var db = mongojs(connection_string, ['products']);
 	
 	/*
 		getproduct('', function(data){
