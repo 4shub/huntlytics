@@ -455,15 +455,6 @@ module.exports = function(app) {
 	});
 	job2.start();
 
-	var job3 = new cronJob({
-	  cronTime: '* * * * * *',
-	  onTick: function() {	
-		console.log('a');
-	  },
-	  start: true,
-	});
-	job3.start();
-		
 	app.get('/hunt', function(req, res) {
 		if(req.param('id') != undefined && req.param('id') != '' ){
 			id = req.param('id');
