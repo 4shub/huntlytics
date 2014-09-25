@@ -409,7 +409,7 @@ module.exports = function(app) {
 	
 	//update tracker + create tracker
 	var job2 = new cronJob({
-	  cronTime: '0 * * * *',
+	  cronTime: '5 * * * *',
 	  onTick: function() {	
 		getproduct('', function(data){
 			
