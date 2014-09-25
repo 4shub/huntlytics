@@ -17,7 +17,7 @@ module.exports = function(app) {
 		"zxaqKEM5tAfnjcnWnLWXfEhdl",
 		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
 		"1.0",
-		"http://localhost:3030/auth/twitter/callback",
+		"http://huntyltics.herokuapp.com/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
