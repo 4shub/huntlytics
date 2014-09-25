@@ -1,5 +1,5 @@
 {
-  "name": "Huntyltics",
+  "name": "huntyltics",
   "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
