@@ -45,7 +45,7 @@ var load = function(pid){
 			
 			for(var i = 0; i < data.times.length; i++){
 				if(data.times != undefined){
-					var a = new Date(data.times[i]*100)
+					var a = new Date(data.times[i])
 					a = a.getHours();
 					times[i] = ampm(a);
 				}

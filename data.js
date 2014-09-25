@@ -424,7 +424,7 @@ module.exports = function(app) {
 						if (o){
 							
 							o.votes[o.votes.length] = data[i].votes_count;
-							var hour = moment().unix();
+							var hour = moment().valueOf();
 							o.time[o.time.length] = hour;
 							products.save(o, {safe: true}, function(err) {
 								i++
@@ -435,7 +435,7 @@ module.exports = function(app) {
 							o.votes = [];
 							o.time = [];
 							o.votes[0] = data[i].votes_count;
-							var hour = moment().unix();
+							var hour = moment().valueOf();
 							o.time[0] = hour;
 							o.id = data[i].id;
 							o.name = data[i].name;
@@ -455,6 +455,7 @@ module.exports = function(app) {
 	});
 	job2.start();
 	
+		
 
 	
 	app.get('/hunt', function(req, res) {
