@@ -359,7 +359,7 @@ module.exports = function(app) {
 	var moment 		= require('moment');
 	var ObjectID = require('mongodb').ObjectID
 
-	var connection_string = 'mongodb://heroku_app29990195:Sdn1997!@ds039850.mongolab.com:39850/heroku_app29990195';
+	var connection_string = 'mongodb://heroku_app29990195:6k4c5podhj7g6qnop5rijkucsp@ds039850.mongolab.com:39850/heroku_app29990195';
 
 	
 
