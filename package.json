@@ -1,0 +1,28 @@
+{
+  "name": "Huntyltics",
+  "version": "0.1.0",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "~3.4.x",
+    "strip-common-words": "~0.1.1"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {},
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Shubham Naik",
+  "contributors": [],
+  "license": "MIT",
+  "devDependencies": {
+    "common-words": "~0.1.3"
+  }
+}

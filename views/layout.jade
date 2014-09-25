@@ -1,0 +1,20 @@
+doctype html
+html
+	head
+		title Huntlytics 
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src='/vendor/jquery.min.js')		
+		script(src='/js/chart.js')
+		script(src='/js/controller.js')
+	body
+		.header
+			.centre
+				.space-left
+					| <a href='/' class='logo'> Huntlytics </a> A <a style='font-size:bold' href='http://producthunt.com'>Product Hunt</a> analytics platform.
+				.space-right
+					| <a class='menu'> About </a> <a class='menu'> Source </a> <input class='search' type='text' placeholder='Enter a product ID'>
+		.loading
+			| Loading <br> <font style='font-size:10px'>This will take from 1 to 5 seconds.</font>
+		.loading-e
+			| Not enough votes <br> (Less than 5) <br> Pick something else.
+		block content

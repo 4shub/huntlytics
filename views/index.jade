@@ -1,0 +1,55 @@
+extends layout
+
+block content
+	-if(oauth != undefined){
+		.psudo-content(style="text-align: center; padding: 20px 0px;")
+			| <div style='font-weight:bold; color:#D95632; margin-bottom:5px;'>You haven't searched anything yet.</div> Click one of the popular products or enter a product id into the search.
+		.top-products
+		.content
+			.content-header
+				.content-header-item
+					| <font id='productname' class='largepoint'>Loading</font> <font id='productdesc' >Getting stuff</font>
+				.con.content-header-item.content-general.content-visible(style="font-size: 12px; margin-top:15px; margin-left: 20px;")
+					| Voting data from <font style='font-weight:bold;' id='datepost'></font> | <font id='votecount' style='font-weight:bold;'>3</font> votes <font id='commentcount' style='font-weight:bold;'>34</font> comments			
+			.con.content-general.content-visible
+				.canvas-holder
+					canvas#cancan(width=960 height=250)
+				.content-field
+					.content-field-header
+						.content-title Influence and Voter Data
+						.content-subtitle Most influential voters
+					.content-data#voters
+					.content-data(style="margin: 20px auto; width: 800px; height: 175px;")
+						.content-table
+							.content-table-title Locations
+							.content-table-data#regions
+						.content-table
+							.content-table-title Professions
+							.content-table-data#jobs
+						.content-table
+							.content-table-title Gender
+							.content-table-data#sex
+						.content-table
+							.content-table-title Interests
+							.content-table-data#interests
+					.content-field-header
+						.content-title Reach and Growth Data
+						.content-title-d
+							|  <font id='preach' style='font-weight:bold;'></font> Potential Reach <font id='reach' style='font-weight:bold;'></font> Actual Reach
+						.content-subtitle
+							|  Based on recent tweets and the keyword <font id='key_reach' style='font-weight:bold;'></font>
+					.content-data#items
+	- } else {
+		.psudo-content(style="text-align: center; padding: 20px 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); width: 500px; margin-left: -250px; top: 100px; border: 1px solid rgb(243, 243, 243); border-radius: 2px; box-shadow: 1px 1px 3px rgba(237, 237, 237, 0.5);")
+			| <div style='font-weight: bold; color: rgb(217, 86, 50); font-size: 25px;'>Welcome to Huntlytics</div><div style="width: 400px; line-height: 18px; margin: 15px auto;"> Huntlytics is a Product Hunt analytics platform that uses the Twitter and PH api to get insights on your favorite posts.</div> <a href='/auth/twitter'><div class='signup-tool'>Sign up with Twitter</div></a> <div class='small'>Twitter gives us better insight into who votes.</div>
+	- }
+	.con.content-about.content-e(style="box-sizing: border-box; padding: 20px; text-align: left; font-size: 17px;")
+		| <div style='font-weight:bold; font-size:28px; margin:0px 0px 10px;'>Hello.</div> Huntlytics is a little tool that uses both the <a target='_blank' href='http://producthunt.co'>Product Hunt</a> and <a target='_blank' href='http://twitter.com/'>Twitter</a> api. Created by <a target='_blank' href='http://twitter.com/theforthwall'>Shubham Naik</a> while procrastinating.
+		| <br><br>
+		| <div style='font-weight:bold; font-size:28px; margin:0px 0px 10px;'>Why can't I search by name?</div> The Product Hunt API does not support name search at the moment. But I'll add it in when it becomes available.
+		| <br><br>
+		| <div style='font-weight:bold; font-size:28px; margin:0px 0px 10px;'>How can I find an ID?</div> If you use an html inspector on the vote button on PH you can find the id of the Product associated with that vote button. 
+		| <br><br>
+		| <div style='font-weight:bold; font-size:28px; margin:0px 0px 10px;'>Try these IDs out</div> 9, 4000, 5496, 6644
+		| <br><br>
+		| <div style='font-weight:bold; font-size:28px; margin:0px 0px 10px;'>Suggestions!</div> Send me an email at <a href='mailto:shub@hubyard.com'>shub@hubyard.com</a> or sent me a message to <a target='_blank' href='http://twitter.com/theforthwall'>@theforthwall</a>
