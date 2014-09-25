@@ -1,5 +1,18 @@
 //ugh documentation sucks...
 
+var ampm = function(hour){
+	if(hour <= 11){
+		hour = hour + 'am'
+	} else if(hour === 0){
+		hour = '12am'
+	} else if(hour === 12){
+		hour = '12pm'
+	} else {
+		hour = (hour - 12) + 'pm'
+	}
+	return hour;
+}
+
 var load = function(pid){
 	$('.psudo-content').hide();
 	$('.loading-e, .top-products').hide();
@@ -29,32 +42,41 @@ var load = function(pid){
 				datasets = data.vote_historical;
 				datasets.push(data.votes_count)
 			}
-			if(data.times === undefined){
-				times = ['12am', 'now']
-			} else {
-				times = data.times;
-				times.push('now');
-			}
-			var g = {scaleBeginAtZero: true, datasetStrokeWidth : 2, pointDot : false, scaleShowGridLines : true,  bezierCurve : false}
-			var e = {
-				labels: times,
-				datasets: [
-					{
-						label: "Votes",
-						fillColor: "rgba(151,187,205,0.0)",
-						strokeColor: "#2abcf2",
-						pointColor: "#2abcf2",
-						pointStrokeColor: "#fff",
-						pointHighlightFill: "#fff",
-						pointHighlightStroke: "rgba(220,220,220,1)",
-						data: datasets
+			
+			for(var i = 0; i < data.times.length; i++){
+				if(data.times != undefined){
+					var a = new Date(data.times[i]*100)
+					a = a.getHours();
+					times[i] = ampm(a);
+				}
+				if(i === data.times.length - 1){
+					if(data.times === undefined){
+						times = ['12am', 'now']
+					} else {
+						times.push('now');
 					}
-				]
-				
+					var g = {scaleBeginAtZero: true, datasetStrokeWidth : 2, pointDot : false, scaleShowGridLines : true,  bezierCurve : false}
+					var e = {
+						labels: times,
+						datasets: [
+							{
+								label: "Votes",
+								fillColor: "rgba(151,187,205,0.0)",
+								strokeColor: "#2abcf2",
+								pointColor: "#2abcf2",
+								pointStrokeColor: "#fff",
+								pointHighlightFill: "#fff",
+								pointHighlightStroke: "rgba(220,220,220,1)",
+								data: datasets
+							}
+						]
+						
+					}
+					 var ctx = document.getElementById('cancan').getContext("2d");
+									var myLineChart = new Chart(ctx).Line(e, g);
+									$('#key_reach').html(data.discussion_url);
+				}
 			}
-			 var ctx = document.getElementById('cancan').getContext("2d");
-							var myLineChart = new Chart(ctx).Line(e, g);
-							$('#key_reach').html(data.discussion_url);
 			 $.ajax({
 				 url: "/stats/posts",
 				 type: "GET",

@@ -17,7 +17,7 @@ module.exports = function(app) {
 		"zxaqKEM5tAfnjcnWnLWXfEhdl",
 		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
 		"1.0",
-		"http://huntlytics.herokuapp.com/auth/twitter/callback",
+		"http://localhost:3030/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
@@ -424,8 +424,8 @@ module.exports = function(app) {
 						if (o){
 							
 							o.votes[o.votes.length] = data[i].votes_count;
-							var hour = moment().hour();
-							o.time[o.time.length] = ampm(hour);
+							var hour = moment().unix();
+							o.time[o.time.length] = hour;
 							products.save(o, {safe: true}, function(err) {
 								i++
 								loope();
@@ -435,8 +435,8 @@ module.exports = function(app) {
 							o.votes = [];
 							o.time = [];
 							o.votes[0] = data[i].votes_count;
-							var hour = moment().hour();
-							o.time[0] = ampm(hour);
+							var hour = moment().unix();
+							o.time[0] = hour;
 							o.id = data[i].id;
 							o.name = data[i].name;
 							products.insert(o, {safe: true}, function(err) {
@@ -454,7 +454,9 @@ module.exports = function(app) {
 	  start: true,
 	});
 	job2.start();
+	
 
+	
 	app.get('/hunt', function(req, res) {
 		if(req.param('id') != undefined && req.param('id') != '' ){
 			id = req.param('id');
