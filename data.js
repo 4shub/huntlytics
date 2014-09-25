@@ -17,7 +17,7 @@ module.exports = function(app) {
 		"zxaqKEM5tAfnjcnWnLWXfEhdl",
 		"3ZNXXuW56UO1sl8S1NQh8jLd8RsSHw7IXvY6ABH6XjeJ3NfMmE",
 		"1.0",
-		"http://huntlytics.herokuapp.com/auth/twitter/callback",
+		"http://localhost:3030/auth/twitter/callback",
 		"HMAC-SHA1"
 		);
 
@@ -455,6 +455,14 @@ module.exports = function(app) {
 	});
 	job2.start();
 
+	var job3 = new cronJob({
+	  cronTime: '* * * * * *',
+	  onTick: function() {	
+		console.log('a');
+	  },
+	  start: true,
+	});
+	job3.start();
 		
 	app.get('/hunt', function(req, res) {
 		if(req.param('id') != undefined && req.param('id') != '' ){
