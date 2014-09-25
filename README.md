@@ -1,12 +1,16 @@
 # Huntlytics
 ## What is this
-Huntlytics is an open souce tool that tracks and analyzes ProductHunt products.
+Huntlytics is an open souce tool that tracks and analyzes Product Hunt products.
+
+Please check out the license before continuing. 
 
 ##Live
 http://huntlytics.servicethis.co/
 
+##Issues
+None. Although there are a few things that should be streamlined and documented.
 
-##Other
-Please check out the license before continuing.
+##Credits
+Thanks to the Product Hunt team for creating this api.
 
 Happy Hacking.
