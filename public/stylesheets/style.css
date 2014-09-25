@@ -361,6 +361,9 @@ max-width: 25%;
 float: left;
 max-width: 75%;
 text-transform: capitalize;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
 }
 
 .table-row{

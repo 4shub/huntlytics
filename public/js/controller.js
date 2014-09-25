@@ -100,13 +100,13 @@ var load = function(pid){
 									}
 									
 									if(i < 5){
-										if(data.locations[0][i] != undefined){
+										if(data.locations[0][i] != undefined && data.locations[0][i] != ''){
 											$('#regions').append('<div class="table-row"><div class="table-a">' +data.locations[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.locations[1][i])/data.followers.length)*100) + '%</div></div>');
 										}
-										if(data.descriptions[0][i] != undefined){
+										if(data.descriptions[0][i] != undefined && data.descriptions[0][i] != ''){
 											$('#jobs').append('<div class="table-row"><div class="table-a">' +data.descriptions[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.descriptions[1][i])/ape)*100) + '%</div></div>');
 										}
-										if(data.interests[0][i] != undefined){
+										if(data.interests[0][i] != undefined && data.interests[0][i] != ''){
 											$('#interests').append('<div class="table-row"><div class="table-a">' +data.interests[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.interests[1][i])/ape)*100) + '%</div></div>');
 										}
 									}
