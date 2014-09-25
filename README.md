@@ -1,18 +1,10 @@
-# hubyard_alpha
+# Huntlytics
+## What is this
+Huntlytics is an open souce tool that tracks and analyzes ProductHunt products.
 
-## Objective
+##Live
+http://huntlytics.servicethis.co/
 
+Please check out the license before continuing.
 
-
-## Usage
-
-
-
-## Developing
-
-
-
-### Tools
-
-Created with [Nodeclipse v0.5](https://github.com/Nodeclipse/nodeclipse-1)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
+Happy Hacking.
