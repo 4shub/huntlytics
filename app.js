@@ -1,6 +1,7 @@
 
 /**
  * Module dependencies.
+ * There's nothing really special here
  */
 
 var express = require('express');
@@ -9,7 +10,7 @@ var path = require('path');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3030);
+app.set('port', process.env.PORT || 3030); //connect to localhost:3030
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.logger('dev'));
