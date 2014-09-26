@@ -35,7 +35,7 @@ module.exports = function(app) {
 		"https://api.twitter.com/oauth/request_token",
 		"https://api.twitter.com/oauth/access_token",
 		"KEY",
-		"KEY_SECRET",
+		"KEY_S",
 		"1.0",
 		"http://localhost:3030/auth/twitter/callback",
 		"HMAC-SHA1"
@@ -86,13 +86,15 @@ module.exports = function(app) {
 		res.render('index', {oauth:req.session.ottw, oauths:req.session.ottws});
 	});
 	
+
+	
 	var getproduct = function(id, cb){
 		var request = require('request');
 
 		var options = {
 			url: 'https://api.producthunt.com/v1/posts/' + id,
 			headers: {
-				'Authorization': 'Bearer PH_DEV_KEY'
+				'Authorization': 'Bearer KEY_PH'
 			}
 		};
 
@@ -112,7 +114,7 @@ module.exports = function(app) {
 			var options = {
 				url: 'https://api.producthunt.com/v1/posts/' + id + '/votes?per_page=50' + older,
 				headers: {
-					'Authorization': 'Bearer PH_DEV_KEY'
+					'Authorization': 'Bearer KEY_PH'
 				}
 			};
 			
@@ -200,7 +202,7 @@ module.exports = function(app) {
 		}
 		var twit = new twitter({
 			consumer_key: 'KEY',
-			consumer_secret: 'KEY_SECRET',
+			consumer_secret: 'KEY_S',
 			access_token_key: req.session.ottw,
 			access_token_secret: req.session.ottws
 		});
@@ -314,7 +316,7 @@ module.exports = function(app) {
 								
 								var twit = new twitter({
 											consumer_key: 'KEY',
-											consumer_secret: 'KEY_SECRET',
+											consumer_secret: 'KEY_S',
 											access_token_key: req.session.ottw,
 											access_token_secret: req.session.ottws
 										});
@@ -379,7 +381,7 @@ module.exports = function(app) {
 	var moment 		= require('moment');
 	var ObjectID = require('mongodb').ObjectID
 
-	var connection_string = 'connection_string';
+	var connection_string = 'cs';
 
 	
 
@@ -474,8 +476,6 @@ module.exports = function(app) {
 	  start: true,
 	});
 	job2.start();
-	
-		
 
 	
 	app.get('/hunt', function(req, res) {
@@ -496,5 +496,6 @@ module.exports = function(app) {
 			});
 		});
 	});
+
 		
 }
