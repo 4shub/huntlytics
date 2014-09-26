@@ -62,14 +62,19 @@ var load = function(pid){
 				datasets = data.vote_historical;
 				datasets.push(data.votes_count)
 			}
-			
-			for(var i = 0; i < data.times.length; i++){
+			var tot = 0;
+			if(data.times === undefined){
+				tot = 1;
+			} else {
+				tot = data.times.length;
+			}
+			for(var i = 0; i < tot; i++){
 				if(data.times != undefined){
 					var a = new Date(data.times[i])
 					a = a.getHours();
 					times[i] = ampm(a);
 				}
-				if(i === data.times.length - 1){
+				if(i === tot - 1){
 					if(data.times === undefined){
 						times = ['12am', 'now']
 					} else {
@@ -250,14 +255,12 @@ $(document).on('click', '.chg-into', function(){
 
 $(document).on('click', '.sidebar-item', function(){
 	
-	$('.sidebar-item').removeClass('sidebar-item-selected');
-	$('.con').removeClass('content-visible');
-	if($(this).data('id') === 'about'){
-		$('.content-header').hide();
+	
+	if($('.content-about').is(':visible')===true){
+		$('.solid').show();
+		$('.content-about').hide()
 	} else {
-		$('.content-header').show();
+		$('.solid').hide();
+		$('.content-about').show()
 	}
-	$(this).addClass('sidebar-item-selected');
-	$('.content-' +$(this).data('id')).addClass('content-visible');
 });
-
