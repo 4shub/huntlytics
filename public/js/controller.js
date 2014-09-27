@@ -34,6 +34,7 @@ var ampm = function(hour){
 }
 
 var load = function(pid){
+	window.history.pushState("hi", "Huntlytics", "/p/" + pid); // changeurl
 	$('.psudo-content').hide();
 	$('.loading-e, .top-products').hide();
 	$('.loading').show();
@@ -245,7 +246,10 @@ $(document).ready(function(){
 		   load(pid);
 		  }
 	  });
-
+	if($('.starter').is(':visible') === true){
+		var pid = $('.starter').data('id');
+		load(pid);
+	}
 });
 
 $(document).on('click', '.chg-into', function(){
@@ -264,3 +268,4 @@ $(document).on('click', '.sidebar-item', function(){
 		$('.content-about').show()
 	}
 });
+
