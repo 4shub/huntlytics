@@ -86,7 +86,11 @@ module.exports = function(app) {
 		res.render('index', {oauth:req.session.ottw, oauths:req.session.ottws});
 	});
 	
-
+	app.get('/p/:lid', function(req, res) {
+		var lid = req.params.lid
+		res.render('index', {oauth:req.session.ottw, oauths:req.session.ottws, lid:lid});
+	});
+	
 	
 	var getproduct = function(id, cb){
 		var request = require('request');
