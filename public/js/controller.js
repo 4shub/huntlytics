@@ -34,6 +34,10 @@ var ampm = function(hour){
 }
 
 var load = function(pid){
+	if(isNaN(pid) === true){
+		$('.al-option').show();
+	} else {
+	$('.al-option').hide();	
 	window.history.pushState("hi", "Huntlytics", "/p/" + pid); // changeurl
 	$('.psudo-content').hide();
 	$('.loading-e, .top-products').hide();
@@ -207,7 +211,13 @@ var load = function(pid){
 	   error:function(data){
 		 alert('An error happened, dont worry just refresh and try a different id, but if it persists go tell @theforthwall on twitter, this: <br>'  + JSON.stringify(data));   
 	   }
-	  }); 
+	  })
+	  ; 
+	  
+
+}
+}
+
 var convert = function(data) {
 		var re = data;
 		if(data >= 1000){
@@ -218,10 +228,7 @@ var convert = function(data) {
 			re = Math.round(10*(data/1000000))/10 +'M'
 		}
 		return re;
-	}			  
-
-}
-
+	}		
 
 $(document).ready(function(){
 	if($('.top-products').is(':visible') === true){
@@ -246,7 +253,7 @@ $(document).ready(function(){
 		   load(pid);
 		  }
 	  });
-	if($('.starter').is(':visible') === true){
+	if($('.starter').is(':visible') === true && $('.top-products').is(':visible') === true ){
 		var pid = $('.starter').data('id');
 		load(pid);
 	}
@@ -263,8 +270,9 @@ $(document).on('click', '.sidebar-item', function(){
 	if($('.content-about').is(':visible')===true){
 		$('.solid').show();
 		$('.content-about').hide()
+		
 	} else {
-		$('.solid').hide();
+		$('.solid, .al-option').hide();
 		$('.content-about').show()
 	}
 });
