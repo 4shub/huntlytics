@@ -37,10 +37,11 @@ var load = function(pid){
 	if(isNaN(pid) === true){
 		$('.al-option').show();
 	} else {
-	$('.al-option').hide();	
+	
 	window.history.pushState("hi", "Huntlytics", "/p/" + pid); // changeurl
+	$('.al-option').hide();	
 	$('.psudo-content').hide();
-	$('.loading-e, .top-products').hide();
+	$('.loading-e, .top-products, .psudo-content-m').hide();
 	$('.loading').show();
 	$('.content').hide();
 	$.ajax({
@@ -107,106 +108,114 @@ var load = function(pid){
 									$('#key_reach').html(data.discussion_url);
 				}
 			}
-			 $.ajax({
-				 url: "/stats/posts",
-				 type: "GET",
-				 data: {term:data.discussion_url},
-				 success: function(data) {
-					$('#reach').html(data.reach);
-					$('#items').html('');
-					
-					if(data.status.length != 0){
-					if(data.status.length > 3){
-						 data.status.length = 3;
-					} 
-					for(var i = 0; i < data.status.length; i++){
-						$('#items').append("<a style='color:inherit' target='_blank' href='http://twitter.com/" + data.status[i].user.screen_name + '/status/' + data.status[i].id_str + "'><div class='post-container'>" + data.status[i].text + "<div class='post-source'>"+ data.status[i].user.screen_name + " (@" + data.status[i].user.name + ")</div></div></a>");
-					}	
-					} else {
-						$('#items').html("<div style='margin-top:20px; text-align:center;' class='content-title-d'><b>No Recent Tweets</b> <br> This does not mean that there's no discussion. Just no Product Hunt related discussions.</div>")
-					}
-				 },
-			   error:function(data){
-				 alert('An error happened, dont worry just refresh and try a different id, but if it persists go tell @theforthwall on twitter, this: <br>'  + JSON.stringify(data));   
-			   }
-			  }); 
-			 var nextid = '';
-			 var ape = data.votes_count;
-			 var data = {};			
-				$.ajax({
-					 url: "/stats/vote",
+			if($('.starter-notup').is(':visible') === false){
+				
+				 $.ajax({
+					 url: "/stats/posts",
 					 type: "GET",
-					 data: {id:pid, next:nextid, total:ape},
+					 data: {term:data.discussion_url},
 					 success: function(data) {
-							
-							
-							//list the top users
-								other = 0;
-								tot = 0;
-								epoc = 4;
-
-								for(var i = 0; i < data.followers.length; i++){
-									
-									if(i < 4){
-										$('#voters').append("<a href='http://producthunt.com/" + data.followers[i][0] +"' target='_blank'><div data-id='" + data.followers[i][5] + "' class='profile'><div class='profile-image'><img class='profile-image' src='" + data.followers[i][4] + "'></div><div class='profile-user'><div class='profile-user-name'>" + data.followers[i][1] +"</div><div class='profile-user-username'>@" + data.followers[i][0] + "</div></div><div class='profile-count'>" + data.followers[i][2] + "</div></div></a>");
-									}
-									
-									if(i < 5){
-										if(data.locations[0][i] != undefined && data.locations[0][i] != ''){
-											$('#regions').append('<div class="table-row"><div class="table-a">' +data.locations[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.locations[1][i])/data.followers.length)*100) + '%</div></div>');
-										}
-										if(data.descriptions[0][i] != undefined && data.descriptions[0][i] != ''){
-											$('#jobs').append('<div class="table-row"><div class="table-a">' +data.descriptions[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.descriptions[1][i])/ape)*100) + '%</div></div>');
-										}
-										if(data.interests[0][i] != undefined && data.interests[0][i] != ''){
-											$('#interests').append('<div class="table-row"><div class="table-a">' +data.interests[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.interests[1][i])/ape)*100) + '%</div></div>');
-										}
-									}
-									tot = data.followers[i][3] + tot;
-									if(i === data.followers.length - 1){
-										$('#preach').html(convert(tot));					
-									}
-								}
-								$('#sex').append('<div class="table-row"><div class="table-a">Male</div><div class="table-b">' + Math.round((parseFloat(data.sex.male)/ape)*100) + '%</div></div>');
-								$('#sex').append('<div class="table-row"><div class="table-a">Female</div><div class="table-b">' + Math.round((parseFloat(data.sex.female)/ape)*100) + '%</div></div>');
-							// list top locations
-							
-							
-									
-							/*
-							
-							
-							
-							
-							var top = data.locations[1].length;
-							var topf = data.followers.length;
-							var topd = data.descriptions[1].length;
-							if(data.locations[1].length > 5){
-								top = 5;
-							}
-							var topf = data.followers.length;
-							if(data.followers.length > 20){
-								topf = 20;
-							}
-							var topd = data.descriptions[1].length;
-							if(data.descriptions[1].length > 5){
-								topd = 6;
-							}
-
-							for(var i = 0; i < topd; i++){
-							 
-							}
-							*/
-							/* gender */
-							 //$('#genders').append('<font class="data-ti">' +data.sex+'</font>' + ' ' + data.descriptions[0][i] + '<br>');
-							
-							$('.loading').hide();
-							$('.content').show();
-					},
+						$('#reach').html(data.reach);
+						$('#items').html('');
+						
+						if(data.status.length != 0){
+						if(data.status.length > 3){
+							 data.status.length = 3;
+						} 
+						for(var i = 0; i < data.status.length; i++){
+							$('#items').append("<a style='color:inherit' target='_blank' href='http://twitter.com/" + data.status[i].user.screen_name + '/status/' + data.status[i].id_str + "'><div class='post-container'>" + data.status[i].text + "<div class='post-source'>"+ data.status[i].user.screen_name + " (@" + data.status[i].user.name + ")</div></div></a>");
+						}	
+						} else {
+							$('#items').html("<div style='margin-top:20px; text-align:center;' class='content-title-d'><b>No Recent Tweets</b> <br> This does not mean that there's no discussion. Just no Product Hunt related discussions.</div>")
+						}
+					 },
 				   error:function(data){
 					 alert('An error happened, dont worry just refresh and try a different id, but if it persists go tell @theforthwall on twitter, this: <br>'  + JSON.stringify(data));   
 				   }
 				  }); 
+			
+				 var ape = data.votes_count;
+				 var data = {};			
+			
+					$.ajax({
+						 url: "/stats/vote",
+						 type: "GET",
+						 data: {id:pid, total:ape},
+						 success: function(data) {
+								
+				
+								//list the top users
+									other = 0;
+									tot = 0;
+									epoc = 4;
+
+									for(var i = 0; i < data.followers.length; i++){
+										
+										if(i < 4){
+											$('#voters').append("<div data-id='" + data.followers[i][0] + "' class='profile profile-push'><div class='profile-image'><img class='profile-image' src='" + data.followers[i][4] + "'></div><div class='profile-user'><div class='profile-user-name'>" + data.followers[i][1] +"</div><div class='profile-user-username'>@" + data.followers[i][0] + "</div></div><div class='profile-count'>" + data.followers[i][2] + "</div></div>");
+										}
+										
+										if(i < 5){
+											if(data.locations[0][i] != undefined && data.locations[0][i] != ''){
+												$('#regions').append('<div class="table-row"><div class="table-a">' +data.locations[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.locations[1][i])/data.followers.length)*100) + '%</div></div>');
+											}
+											if(data.descriptions[0][i] != undefined && data.descriptions[0][i] != ''){
+												$('#jobs').append('<div class="table-row"><div class="table-a">' +data.descriptions[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.descriptions[1][i])/ape)*100) + '%</div></div>');
+											}
+											if(data.interests[0][i] != undefined && data.interests[0][i] != ''){
+												$('#interests').append('<div class="table-row"><div class="table-a">' +data.interests[0][i]+'</div><div class="table-b">' + Math.round((parseFloat(data.interests[1][i])/ape)*100) + '%</div></div>');
+											}
+										}
+										tot = data.followers[i][3] + tot;
+										if(i === data.followers.length - 1){
+											$('#preach').html(convert(tot));					
+										}
+									}
+									$('#sex').append('<div class="table-row"><div class="table-a">Male</div><div class="table-b">' + Math.round((parseFloat(data.sex.male)/ape)*100) + '%</div></div>');
+									$('#sex').append('<div class="table-row"><div class="table-a">Female</div><div class="table-b">' + Math.round((parseFloat(data.sex.female)/ape)*100) + '%</div></div>');
+								// list top locations
+								
+								
+										
+								/*
+								
+								
+								
+								
+								var top = data.locations[1].length;
+								var topf = data.followers.length;
+								var topd = data.descriptions[1].length;
+								if(data.locations[1].length > 5){
+									top = 5;
+								}
+								var topf = data.followers.length;
+								if(data.followers.length > 20){
+									topf = 20;
+								}
+								var topd = data.descriptions[1].length;
+								if(data.descriptions[1].length > 5){
+									topd = 6;
+								}
+
+								for(var i = 0; i < topd; i++){
+								 
+								}
+								*/
+								/* gender */
+								 //$('#genders').append('<font class="data-ti">' +data.sex+'</font>' + ' ' + data.descriptions[0][i] + '<br>');
+								
+								$('.loading').hide();
+								$('.content, #totwitter').show();
+						},
+					   error:function(data){
+						 alert('An error happened, dont worry just refresh and try a different id, but if it persists go tell @theforthwall on twitter, this: <br>'  + JSON.stringify(data));   
+					   }
+					  });
+				} else {
+					$('.loading, #totwitter').hide();
+					$('.content').show();
+				}
+
 		},
 	   error:function(data){
 		 alert('An error happened, dont worry just refresh and try a different id, but if it persists go tell @theforthwall on twitter, this: <br>'  + JSON.stringify(data));   
@@ -216,6 +225,38 @@ var load = function(pid){
 	  
 
 }
+}
+
+var loadu = function(pid){
+			$('.al-option').hide();	
+	$('.psudo-content').hide();
+	$('.loading-e, .top-products, .psudo-content-m').hide();
+	$('.loading').show();
+	$('.content').hide();
+		$('.user-sidebar-b-votes').html('');
+		$.ajax({
+			 url: "/user",
+			 type: "GET",
+			 data: {id:pid},
+			 success: function(data) {
+				$('.user-sidebar-topx-name').html(data.name)
+				$('.user-sidebar-topx-screen').html(data.username)
+				$('.user-sidebar-topy-position').html(data.headline)
+				$('#topzv').html(convert(data.votes_count));
+				$('#topzp').html(convert(data.posts_count))
+				$('.user-sidebar-image').attr('src', data.image_url.original);
+				$('#topzm').html(convert(data.maker_of_count))
+				for(var i = 0; i < data.votes.length; i++){
+					$('.user-sidebar-b-votes').append("<div class='chg-into' data-id='" + data.votes[i].post.id + "'><div class='ct-t'>" + data.votes[i].post.name + "</div><div class='ct-te'>" + data.votes[i].post.tagline + "</div></div>");
+				}
+				$('.loading').hide();
+				$('.psudo-content-m').show();
+				//alert(JSON.Stringify(data));
+			},
+		   error:function(data){
+				alert('An error happened, dont worry just refresh, but if it persists go tell @theforthwall on twitter, this: <br>' + JSON.stringify(data));   
+		   }
+		  });
 }
 
 var convert = function(data) {
@@ -257,11 +298,21 @@ $(document).ready(function(){
 		var pid = $('.starter').data('id');
 		load(pid);
 	}
+	if($('.starter-user').is(':visible') === true ){
+		var pid = $('.starter-user').data('id');
+		loadu(pid);
+	}
 });
 
 $(document).on('click', '.chg-into', function(){
 	var pid = $(this).data('id');
 	load(pid);
+});
+
+$(document).on('click', '.profile-push', function(){
+	var pid = $(this).data('id');
+	window.history.pushState("hi", "Huntlytics", "/u/" + pid); // changeurl
+	loadu(pid);
 });
 
 $(document).on('click', '.sidebar-item', function(){
@@ -274,6 +325,7 @@ $(document).on('click', '.sidebar-item', function(){
 	} else {
 		$('.solid, .al-option').hide();
 		$('.content-about').show()
+		
 	}
 });
 
