@@ -1,3 +1,5 @@
+https://travis-ci.org/forthwall/huntlytics.svg?branch=master
+
 # Huntlytics
 ## What is this
 Huntlytics is an open souce tool that tracks and analyzes Product Hunt products.
