@@ -7,7 +7,7 @@ Huntlytics is an open souce tool that tracks and analyzes Product Hunt products.
 Please check out the license before continuing. 
 
 ##Live
-http://huntlytics.servicethis.co/
+http://huntlytics.shub.club/
 
 ##Issues
 None. Although there are a few things that should be streamlined and documented.
